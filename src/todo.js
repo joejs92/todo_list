@@ -2,7 +2,7 @@
 function addTemplate() {
     const element = document.createElement('div');
     element.setAttribute('class','todo');
-    element.style.width = '500px';
+    element.style.width = '540px';
     element.style.padding = '4px';
     element.style.margin='8px';
     element.style.borderWidth = '1px';
@@ -38,6 +38,12 @@ function addTemplate() {
     const buttonText = document.createTextNode("Add");
     editButton.appendChild(buttonText);
     todoBottom.appendChild(editButton);
+
+    const cancelButton = document.createElement('button');
+    const cancelButtonText = document.createTextNode("Cancel");
+    cancelButton.setAttribute('class','cancelButton');
+    cancelButton.appendChild(cancelButtonText);
+    todoBottom.appendChild(cancelButton);
 
     element.appendChild(todoTop);
     element.appendChild(todoBottom);
