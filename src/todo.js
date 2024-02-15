@@ -8,6 +8,12 @@ function addTemplate() {
     element.style.borderWidth = '1px';
     element.style.borderStyle = 'solid';
     element.style.borderColor = 'black';
+    let idNumber = 0;
+    const todos = document.querySelectorAll('.todo');
+    todos.forEach((todos) => {
+        idNumber += 1;
+    })
+    element.setAttribute('id',`todo${idNumber}`)
 
     const todoTop = document.createElement('div');
     todoTop.setAttribute('class','todoSection');
@@ -42,6 +48,7 @@ function addTemplate() {
     const cancelButton = document.createElement('button');
     const cancelButtonText = document.createTextNode("Cancel");
     cancelButton.setAttribute('class','cancelButton');
+    cancelButton.setAttribute('id',`button${idNumber}`);
     cancelButton.appendChild(cancelButtonText);
     todoBottom.appendChild(cancelButton);
 
