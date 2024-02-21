@@ -74,9 +74,6 @@ class Todo {
     }
 
     addToList() {
-        for(let i = 0; i < todoList.length; i++) {
-            todoNumber += 1;
-        }
         const todoArray = [todoNumber, this.title, this.dueDate, this.priority, this.description];
         todoList.push(todoArray);
     }
@@ -84,6 +81,7 @@ class Todo {
     createTodo() {
         const todoCard = document.createElement('div');
         todoCard.setAttribute('class','todoCard');
+        todoCard.setAttribute('id',`todoCard${todoList[todoNumber][0]}`)
         todoCard.style.width = '540px';
         todoCard.style.padding = '4px';
         todoCard.style.margin='8px';
@@ -133,12 +131,14 @@ class Todo {
         const deleteButton = document.createElement('button');
         const deleteButtonText = document.createTextNode("Delete");
         deleteButton.setAttribute('class','deleteButton');
-        //deleteButton.setAttribute('id',`button${idNumber}`);
+        deleteButton.setAttribute('id',`delete${todoList[todoNumber][0]}`);
         deleteButton.appendChild(deleteButtonText);
         todoBottom.appendChild(deleteButton);
 
         todoCard.appendChild(todoTop);
         todoCard.appendChild(todoBottom);
+
+        todoNumber += 1;
 
         return todoCard;
     }
