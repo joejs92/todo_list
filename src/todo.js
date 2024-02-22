@@ -91,9 +91,13 @@ class Todo {
         
         const todoTop = document.createElement('div');
         todoTop.setAttribute('class','todoSection');
+        todoTop.style.display = 'flex';
+        todoTop.style.justifyContent = 'space-between';
 
         const todoBottom = document.createElement('div');
         todoBottom.setAttribute('class','todoSection');
+        todoBottom.style.display = 'flex';
+        todoBottom.style.justifyContent = 'space-between';
 
         const textTitle = document.createElement('div');
         textTitle.setAttribute('class','textBox');
@@ -105,7 +109,7 @@ class Todo {
         const textDate = document.createElement('div');
         textDate.setAttribute('class','textBox');
         const dateContent = document.createElement('p');
-        textTitle.appendChild(dateContent);
+        textDate.appendChild(dateContent);
         dateContent.textContent = `Due Date: ${todoList[todoNumber][2]}`;
         todoTop.appendChild(textDate);
 
@@ -123,17 +127,24 @@ class Todo {
         descriptionContent.textContent = todoList[todoNumber][4];
         todoBottom.appendChild(textDescription);
 
+        const buttonDiv = document.createElement('div');
+        buttonDiv.setAttribute('class','buttonDiv');
+
         const editButton = document.createElement('button');
         const buttonText = document.createTextNode("Edit");
+        editButton.setAttribute('class','editButton');
+        editButton.setAttribute('id',`edit${todoList[todoNumber][0]}`);
         editButton.appendChild(buttonText);
-        todoBottom.appendChild(editButton);
+        buttonDiv.appendChild(editButton);
 
         const deleteButton = document.createElement('button');
         const deleteButtonText = document.createTextNode("Delete");
         deleteButton.setAttribute('class','deleteButton');
         deleteButton.setAttribute('id',`delete${todoList[todoNumber][0]}`);
         deleteButton.appendChild(deleteButtonText);
-        todoBottom.appendChild(deleteButton);
+        buttonDiv.appendChild(deleteButton);
+
+        todoBottom.appendChild(buttonDiv);
 
         todoCard.appendChild(todoTop);
         todoCard.appendChild(todoBottom);
