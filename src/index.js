@@ -11,6 +11,10 @@ function deleteFunction(todoId) {
     x.remove();
 }
 
+function getElement(editId) {
+    console.log(editId);
+}
+
 function addDom() {
     const project = document.querySelector('#project');
     const todoNumber = document.querySelectorAll('.todo');
@@ -36,16 +40,26 @@ function addDom() {
             cancel();
             project.appendChild(completeTodo);
             
-            const deleteButton = document.querySelectorAll('.deleteButton');
-            deleteButton.forEach((deleteButton) => {
-                deleteButton.addEventListener("click",() =>{
-                    const buttonId = deleteButton.id;
-                    const regex = /[0-9]/g;
-                    const regexmatch = buttonId.match(regex);
-                    const todoId = regexmatch.join('');
-                    deleteFunction(todoId);
-                });
-            })
+        const deleteButton = document.querySelectorAll('.deleteButton');
+        deleteButton.forEach((deleteButton) => {
+            deleteButton.addEventListener("click",() =>{
+                const buttonId = deleteButton.id;
+                const regex = /[0-9]/g;
+                const regexmatch = buttonId.match(regex);
+                const todoId = regexmatch.join('');
+                deleteFunction(todoId);
+            });
+        })
+        const editButton = document.querySelectorAll('.editButton');
+        for (let i=0; i<editButton.length; i++) {
+            editButton[i].addEventListener('click',() => {
+                const buttonId = editButton[i].id;
+                const regex = /[0-9]/g;
+                const regexmatch = buttonId.match(regex);
+                const editId = regexmatch.join('');
+                getElement(editId);
+            });
+        }
         })
     }
 }

@@ -165,4 +165,8 @@ function addTodo() {
     return newTodo.createTodo();
 }
 
+function editTodo() {
+    
+}
+
 export {addTemplate, addTodo};
