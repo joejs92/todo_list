@@ -84,8 +84,9 @@ function buttonMaker(element, btnText, bookId) {
 }
 
 function addToDom(element) {
-    const body = document.querySelector('#body');
+    const body = document.querySelector('#project');
     body.appendChild(element);
+    libraryCounter += 1;
 }
 
 function domDelete(className, bookId) {
@@ -119,21 +120,21 @@ function librarySearch(bookId) {
 function addBookTemplate() {
     const newBook = new Book();
     const book = newBook.makeBook();
-    const element = bookCSS('template', 'template');
-    const box = elementMaker('template', book, 'INPUT');
-    const finishedBox = buttonMaker(box,['Add'],'template');
+    const element = bookCSS('book', libraryCounter);
+    const box = elementMaker(libraryCounter, book, 'INPUT');
+    const finishedBox = buttonMaker(box,['Add','Delete'],libraryCounter);
     element.appendChild(finishedBox);
     addToDom(element);
 }
 
-addBookTemplate();
+//addBookTemplate();
 
 const div = document.querySelector('div');
 div.addEventListener('click', event => {
     const target = event.target;
     if(target.tagName == 'BUTTON') {
-        if(target.innerText == 'Add'){
-            const newBook = getValues('template');
+        if(target.innerText == 'New To-do'){
+            /*const newBook = getValues('template');
             const book = newBook.makeBook();
             newBook.addBook();
             const bookId = book[book.length -1];
@@ -143,7 +144,8 @@ div.addEventListener('click', event => {
             const finishedBox = buttonMaker(box,['Edit','Delete'],bookId);
             element.appendChild(finishedBox);
             addToDom(element);
-            libraryCounter += 1;
+            libraryCounter += 1;*/
+            addBookTemplate();
         }
         else if(target.innerText == 'Delete'){
             const id = target.id;
@@ -164,7 +166,7 @@ div.addEventListener('click', event => {
             element.appendChild(finishedBox);
             addToDom(element);
         }
-        else if(target.innerText == 'Save'){
+        else if(target.innerText == 'Save' || target.innerText == 'Add'){
             const id = target.id;
             const bookId = getId(id);
             const newBook = getValues(bookId);
