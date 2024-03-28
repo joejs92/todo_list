@@ -2,7 +2,7 @@ import {todoCounter} from './css.js';
 
 let todoList = [];
 
-function Todo(title = 'Author: ', dueDate = 'Title: ', priority = 'Pages: ', description = 'Is read: ', comments = 'Comments: ', todoId = `${todoCounter}`) {
+function Todo(title = 'Title: ', dueDate = 'Due Date: ', priority = 'Priority: ', description = 'Description: ', comments = 'Comments: ', todoId = `${todoCounter}`) {
     this.title = title;
     this.dueDate = dueDate; 
     this.priority = priority;

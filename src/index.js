@@ -1,4 +1,4 @@
-import {elementMaker, buttonMaker, addToDom, domDelete,todoCSS,addtodoTemplate} from './css.js';
+import {elementMaker, buttonMaker, domDelete,addtodoTemplate} from './css.js';
 import {getId, getValues, librarySearch} from './todo.js';
 
 const div = document.querySelector('div');
@@ -52,4 +52,3 @@ div.addEventListener('click', event => {
         }
     }
 })
-//Some issues with the 'edit' and 'save' functionalities
