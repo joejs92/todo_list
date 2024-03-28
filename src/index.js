@@ -24,9 +24,9 @@ div.addEventListener('click', event => {
             const box = elementMaker(todoId, todo, 'INPUT');
             const finishedBox = buttonMaker(box,['Save'],todoId);
             element.appendChild(finishedBox);
-            addToDom(element);
+            //addToDom(element);
         }
-        else if(target.innerText == 'Save' || target.innerText == 'Add'){
+        else if(target.innerText == 'Save'){
             const id = target.id;
             const todoId = getId(id);
             const newTodo = getValues(todoId);
@@ -37,7 +37,18 @@ div.addEventListener('click', event => {
             const box = elementMaker(todoId, todo, 'p');
             const finishedBox = buttonMaker(box,['Edit','Delete'],todoId);
             element.appendChild(finishedBox);
-            addToDom(element);
+        }
+        else if(target.innerText == 'Add'){
+            const id = target.id;
+            const todoId = getId(id);
+            const newTodo = getValues(todoId);
+            const todo = newTodo.makeTodo();
+            newTodo.addTodo();
+            domDelete('box',todoId);
+            const element = document.querySelector(`#todo${todoId}`);
+            const box = elementMaker(todoId, todo, 'p');
+            const finishedBox = buttonMaker(box,['Edit','Delete'],todoId);
+            element.appendChild(finishedBox);
         }
     }
 })

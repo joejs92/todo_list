@@ -36,7 +36,6 @@ function buttonMaker(element, btnText, todoId) {
 function addToDom(element) {
     const body = document.querySelector('#project');
     body.appendChild(element);
-    todoCounter += 1;
 }
 
 function domDelete(className, todoId) {
@@ -65,6 +64,8 @@ function addtodoTemplate() {
     const finishedBox = buttonMaker(box,['Add','Delete'],todoCounter);
     element.appendChild(finishedBox);
     addToDom(element);
+    todoCounter += 1;
+    //Problem might be here.
 }
 
 export {elementMaker, buttonMaker, addToDom, domDelete,todoCSS,addtodoTemplate,todoCounter};

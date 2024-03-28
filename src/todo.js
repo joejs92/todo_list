@@ -2,13 +2,14 @@ import {todoCounter} from './css.js';
 
 let todoList = [];
 
-function Todo(title = 'Author: ', dueDate = 'Title: ', priority = 'Pages: ', description = 'Is read: ', comments = 'Comments: ', todoId = 'template') {
+function Todo(title = 'Author: ', dueDate = 'Title: ', priority = 'Pages: ', description = 'Is read: ', comments = 'Comments: ', todoId = `${todoCounter}`) {
     this.title = title;
     this.dueDate = dueDate; 
     this.priority = priority;
     this.description = description;
     this.comments = comments;
-    let todo = [this.title, this.dueDate, this.priority, this.description, this.comments, `${todoCounter}`];
+    this.todoId = todoId;
+    let todo = [this.title, this.dueDate, this.priority, this.description, this.comments, this.todoId];
     this.makeTodo = function() {
         return todo;
     }
@@ -41,7 +42,7 @@ function getValues(todoId) {
     let priority = document.getElementById(`pages${todoId}`).value;
     let description = document.getElementById(`read${todoId}`).value;
     let comments = document.getElementById(`comments${todoId}`).value;
-    let newTodo = new Todo(title, dueDate, priority, description, comments);
+    let newTodo = new Todo(title, dueDate, priority, description, comments , todoId);
     return newTodo;
 }
 function librarySearch(todoId) {
