@@ -1,12 +1,14 @@
 import {elementMaker, buttonMaker, domDelete,addtodoTemplate} from './css.js';
-import {getId, getValues, librarySearch, addProjectTemplate} from './todo.js';
+import {getId, getValues, librarySearch} from './todo.js';
+import {addProjectTemplate, getValued, elementsMaker} from './project.js';
 
 const div = document.querySelector('div');
 div.addEventListener('click', event => {
     const target = event.target;
     if(target.tagName == 'BUTTON') {
         if(target.innerText == 'New To-do'){
-            addtodoTemplate();
+           // addtodoTemplate();
+           console.log('works');
         }
         else if(target.innerText == 'Delete'){
             const id = target.id;
@@ -24,7 +26,6 @@ div.addEventListener('click', event => {
             const box = elementMaker(todoId, todo, 'INPUT');
             const finishedBox = buttonMaker(box,['Save'],todoId);
             element.appendChild(finishedBox);
-            //addToDom(element);
         }
         else if(target.innerText == 'Save'){
             const id = target.id;
@@ -52,6 +53,25 @@ div.addEventListener('click', event => {
         }
         else if(target.innerText == 'New Project'){
             addProjectTemplate();
+        }
+        else if(target.innerText == 'Remove'){
+            const id = target.id;
+            const projectId = getId(id);
+            const newProject = getValued(projectId);
+            newProject.deleteProject();
+            domDelete('project',projectId);
+        }
+        else if(target.innerText == 'Create'){
+            const id = target.id;
+            const projectId = getId(id);
+            const newProject = getValued(projectId);
+            const project = newProject.makeProject();
+            newProject.addProject();
+            domDelete('projectBox',projectId);
+            const element = document.querySelector(`#project${projectId}`);
+            const box = elementsMaker(projectId, project, 'p');
+            const finishedBox = buttonMaker(box,['New To-do'],projectId);
+            element.appendChild(finishedBox);
         }
     }
 })

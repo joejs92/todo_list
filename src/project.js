@@ -1,4 +1,4 @@
-import {projectCSS, buttonMaker} from './css.js';
+import {projectCSS, buttonMaker, addToDom} from './css.js';
 
 let projectList = [];
 let projectCounter = 0;
@@ -27,20 +27,40 @@ function Project(title = 'Title: ', projectId = `${projectCounter}`) {
     }
 }
 
+function elementsMaker(projectId, project, elemType) {
+    const elementIds = ['titled', '0'];
+    const boxElement = document.createElement('div');
+    boxElement.setAttribute('id',`projectBox${projectId}`);
+    for(let i = 0;i<elementIds.length-1;i++){
+        const projectContent = document.createElement(`${elemType}`);
+        projectContent.setAttribute('id',`${elementIds[i]}${projectId}`);
+        if(elemType == 'INPUT'){
+            projectContent.setAttribute('type','text');
+            projectContent.setAttribute('value',project[i]);
+        }
+        else{
+            projectContent.textContent = `${project[i]}`;
+        }
+        boxElement.appendChild(projectContent);
+    }
+    return boxElement;
+}
+
 function addProjectTemplate() {
     const newProject = new Project();
     const project = newProject.makeProject();
     const element = projectCSS('project', projectCounter);
-    const title = document.createElement('INPUT');
-    title.setAttribute("type","text");
-    title.setAttribute("placeholder","Title");
-    title.setAttribute("id",`titled${projectCounter}`);
-    element.appendChild(title);
-    const finishedElement = buttonMaker(element,['Create','Delete'],projectCounter);
+    const box = elementsMaker(projectCounter, project, 'INPUT');
+    const finishedElement = buttonMaker(box,['Create','Remove'],projectCounter);
     element.appendChild(finishedElement);
     addToDom(element, 'body');
     projectCounter += 1;
 }
 
+function getValued(projectId) {
+    let title = document.getElementById(`titled${projectId}`).value;
+    let newProject = new Project(title);
+    return newProject;
+}
 
-export {addProjectTemplate};
+export {addProjectTemplate, getValued, elementsMaker};
