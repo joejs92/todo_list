@@ -1,5 +1,5 @@
 import {elementMaker, buttonMaker, domDelete,addtodoTemplate} from './css.js';
-import {getId, getValues, librarySearch} from './todo.js';
+import {getId, getValues, librarySearch, addProjectTemplate} from './todo.js';
 
 const div = document.querySelector('div');
 div.addEventListener('click', event => {
@@ -49,6 +49,9 @@ div.addEventListener('click', event => {
             const box = elementMaker(todoId, todo, 'p');
             const finishedBox = buttonMaker(box,['Edit','Delete'],todoId);
             element.appendChild(finishedBox);
+        }
+        else if(target.innerText == 'New Project'){
+            addProjectTemplate();
         }
     }
 })

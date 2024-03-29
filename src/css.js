@@ -3,7 +3,7 @@ import {Todo} from './todo.js';
 let todoCounter = 0;
 
 function elementMaker(todoId, todo, elemType) {
-    const elementIds = ['author', 'title','pages','read','comments','0'];
+    const elementIds = ['title', 'dueDate','priority','description','comments','0'];
     const boxElement = document.createElement('div');
     boxElement.setAttribute('id',`box${todoId}`);
     for(let i = 0;i<elementIds.length-1;i++){
@@ -33,8 +33,8 @@ function buttonMaker(element, btnText, todoId) {
     return element;
 }
 
-function addToDom(element) {
-    const body = document.querySelector('#project');
+function addToDom(element, targetElement) {
+    const body = document.querySelector(`#${targetElement}`);
     body.appendChild(element);
 }
 
@@ -56,6 +56,20 @@ function todoCSS(className, todoId) {
     return element;
 }
 
+function projectCSS(className, projectId) {
+    const element = document.createElement('div');
+    element.setAttribute('class',className);
+    element.setAttribute('id',`${className}${projectId}`);
+    element.style.width = '800px';
+    element.style.height = '200px';
+    element.style.padding = '4px';
+    element.style.margin='8px';
+    element.style.borderWidth = '1px';
+    element.style.borderStyle = 'solid';
+    element.style.borderColor = 'black';
+    return element;
+}
+
 function addtodoTemplate() {
     const newTodo = new Todo();
     const todo = newTodo.makeTodo();
@@ -65,7 +79,6 @@ function addtodoTemplate() {
     element.appendChild(finishedBox);
     addToDom(element);
     todoCounter += 1;
-    //Problem might be here.
 }
 
-export {elementMaker, buttonMaker, addToDom, domDelete,todoCSS,addtodoTemplate,todoCounter};
+export {elementMaker, buttonMaker, addToDom, domDelete,todoCSS,addtodoTemplate,todoCounter, projectCSS};
