@@ -37,10 +37,10 @@ function getId(id) {
     return todoId;
 }
 function getValues(todoId) {
-    let title = document.getElementById(`author${todoId}`).value;
-    let dueDate = document.getElementById(`title${todoId}`).value;
-    let priority = document.getElementById(`pages${todoId}`).value;
-    let description = document.getElementById(`read${todoId}`).value;
+    let title = document.getElementById(`title${todoId}`).value;
+    let dueDate = document.getElementById(`dueDate${todoId}`).value;
+    let priority = document.getElementById(`priority${todoId}`).value;
+    let description = document.getElementById(`description${todoId}`).value;
     let comments = document.getElementById(`comments${todoId}`).value;
     let newTodo = new Todo(title, dueDate, priority, description, comments , todoId);
     return newTodo;
