@@ -7,12 +7,14 @@ div.addEventListener('click', event => {
     const target = event.target;
     if(target.tagName == 'BUTTON') {
         if(target.innerText == 'New To-do'){
-           // addtodoTemplate();
-           console.log('works');
+            const id = target.id;
+            const projectId = getId(id);
+            addtodoTemplate(projectId);
         }
         else if(target.innerText == 'Delete'){
             const id = target.id;
             const todoId = getId(id);
+            console.log(todoId);
             const newTodo = getValues(todoId);
             newTodo.deleteTodo();
             domDelete('todo',todoId);
@@ -70,8 +72,9 @@ div.addEventListener('click', event => {
             domDelete('projectBox',projectId);
             const element = document.querySelector(`#project${projectId}`);
             const box = elementsMaker(projectId, project, 'p');
-            const finishedBox = buttonMaker(box,['New To-do'],projectId);
+            const finishedBox = buttonMaker(box,['New To-do','Remove'],projectId);
             element.appendChild(finishedBox);
         }
     }
 })
+addProjectTemplate();

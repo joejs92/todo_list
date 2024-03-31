@@ -67,17 +67,19 @@ function projectCSS(className, projectId) {
     element.style.borderWidth = '1px';
     element.style.borderStyle = 'solid';
     element.style.borderColor = 'black';
+    element.style.overflow = 'auto';
     return element;
 }
 
-function addtodoTemplate() {
+function addtodoTemplate(projectId) {
     const newTodo = new Todo();
     const todo = newTodo.makeTodo();
     const element = todoCSS('todo', todoCounter);
     const box = elementMaker(todoCounter, todo, 'INPUT');
     const finishedBox = buttonMaker(box,['Add','Delete'],todoCounter);
     element.appendChild(finishedBox);
-    addToDom(element);
+    const targetElement = `project${projectId}`;
+    addToDom(element, targetElement);
     todoCounter += 1;
 }
 
